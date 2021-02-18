@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/disable_update_text_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="disable 'bottom textview' update" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/forceLayout_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="forcelayout on 'inner textview'" />
+
+    <TextView
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Click card to rebind" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</FrameLayout>
+</LinearLayout>

@@ -21,12 +21,12 @@ class TestView @JvmOverloads constructor(
     }
 
     fun setTextBelow() {
-        binding.textViewBelow.text = "Lorem"
+        binding.textViewBelow.text = "bottom textview"
     }
 
-    fun setMainText(input: String) {
+    fun setMainText(input: String, forceLayout: Boolean) {
         binding.includedView.includedTextview.text = input
         // workaround is to call forceLayout
-        // binding.includedView.includedTextview.forceLayout()
+        if (forceLayout) binding.includedView.includedTextview.forceLayout()
     }
 }

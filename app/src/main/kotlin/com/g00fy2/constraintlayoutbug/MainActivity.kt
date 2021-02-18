@@ -1,14 +1,13 @@
 package com.g00fy2.constraintlayoutbug
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.g00fy2.constraintlayoutbug.databinding.ActivityMainBinding
 import com.g00fy2.constraintlayoutbug.databinding.TestViewItemBinding
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = MinimalAdapter()
     }
 
-    class MinimalAdapter : RecyclerView.Adapter<MinimalAdapter.ItemViewHolder>() {
+    inner class MinimalAdapter : RecyclerView.Adapter<MinimalAdapter.ItemViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             return ItemViewHolder(
@@ -35,15 +34,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-            holder.binding.testView.setTextBelow() // issue does not happen without updating this textview
+            // issue does not happen without updating this textview
+            if (!binding.disableUpdateTextSwitch.isChecked) {
+                holder.binding.testView.setTextBelow()
+            }
             holder.binding.testView.setMainText(
-                Random.nextLong(100000000000, 999999999999).toString()
+                "inner textview",
+                binding.forceLayoutSwitch.isChecked
             )
         }
 
         override fun getItemCount() = 1
 
-        class ItemViewHolder(val binding: TestViewItemBinding) :
+        inner class ItemViewHolder(val binding: TestViewItemBinding) :
             RecyclerView.ViewHolder(binding.root)
     }
 }
